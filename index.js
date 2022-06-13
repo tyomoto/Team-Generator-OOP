@@ -1,11 +1,10 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-teamArray = [];
+const teamProfile = [];
 
 // Function to start the prompt asking which team member
 // Switch case for each option 
-// Build HTML 
 
 function newTeam(){
     inquirer.prompt([
@@ -15,7 +14,27 @@ function newTeam(){
             message: "What type of employee are you adding to the team?",
             choices: ["Manager", "Engineer", "Intern", "None"]
         }
-    ])
+    ]).then(function (userInput){
+        switch(userInput.employeeTypePrompt){
+            case "Manager":
+                addManager();
+                break;
+            case "Engineer":
+                addEngineer();
+                break;
+            case "Intern":
+                addIntern();
+                break;
+            default:
+                buildOutHtml();
+
+        }
+    })
+}
+
+// Function to create HTML after user inputs from prompts
+function buildOutHtml(){
+    fs.writeFile()
 }
 
 // Function to prompt manager questions when selected from newTeam Prompt
