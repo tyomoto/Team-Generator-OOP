@@ -1,5 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const Engineer = require("./lib/engineer");
+const Manager = require("./lib/Manager");
+const Intern = require("./lib/Intern");
+
 
 const teamProfile = [];
 
@@ -60,7 +64,11 @@ function newManager() {
             name: "managerOfficeNumber",
             message: "What is the manager's office number?"
         }
-    ])
+    ]).then(answers => {
+        const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
+        teamProfile.push(manager);
+        newTeam();
+    })
 }
 // Function to prompt engineer questions when selected from newTeam Prompt
 function newEngineer(){
@@ -85,7 +93,11 @@ function newEngineer(){
             name: "engineerGithub",
             message: "What is the engineer's github username?"
         }
-    ])
+    ]).then(answers => {
+        const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+        teamProfile.push(engineer);
+        newTeam();
+    })
 }
 // Function to prompt intern questions when selected from newTeam Prompt
 function newIntern(){
@@ -110,5 +122,9 @@ function newIntern(){
             name: "internSchool",
             message: "Where does the intern attend school?"
         }
-    ])
+    ]).then(answers => {
+        const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+        teamProfile.push(intern);
+        newTeam();
+    })
 }
