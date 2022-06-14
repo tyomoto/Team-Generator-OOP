@@ -6,7 +6,10 @@ const Intern = require("./lib/Intern");
 
 
 const teamProfile = [];
-
+// Function to start the team profile generator
+function startGenerator(){
+    newTeam();
+}
 // Function to start the prompt asking which team member
 // Switch case for each option 
 
@@ -21,16 +24,17 @@ function newTeam(){
     ]).then(function (userInput){
         switch(userInput.employeeTypePrompt){
             case "Manager":
-                addManager();
+                newManager();
                 break;
             case "Engineer":
-                addEngineer();
+                newEngineer();
                 break;
             case "Intern":
-                addIntern();
+                newIntern();
                 break;
             default:
-                buildOutHtml();
+                // buildOutHtml();
+                console.log(teamProfile);
 
         }
     })
@@ -128,3 +132,5 @@ function newIntern(){
         newTeam();
     })
 }
+
+startGenerator();
